@@ -1,0 +1,32 @@
+image: hashicorp/terraform:latest
+
+stages:
+  - validate
+  - plan
+  - apply
+
+terraform:
+  image:
+    name: hashicorp/terraform:latest
+  stage: validate
+  script:
+    - terraform init
+    - terraform validate
+
+terraform_plan:
+  stage: plan
+  script:
+    - terraform plan -out=tfplan
+  artifacts:
+    paths:
+      - tfplan
+  only:
+    - branches
+
+terraform_apply:
+  stage: apply
+  script:
+    - terraform apply tfplan
+  when: manual
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
