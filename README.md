@@ -22,7 +22,7 @@ To manually deploy this static website from your local machine, you will require
 5. If successful, the deployment should output the EC2 instance's public IP, which you can use to access your static website.
 
 # Gitlab CI/CD Pipeline
-The provided [gitlab-ci.yml](.gitlab-ci.yml) file defines three stages to successfully deploy the static webpage:
+The provided [gitlab-ci.yml](.gitlab-ci.yml) file defines a pipeline with three stages:
 
 * `validate` initialises terraform and validates that the terraform code is syntactically correct and consistent.
 * `plan` runs a `terraform plan` command and outputs the result to a `tfplan` artifact.
